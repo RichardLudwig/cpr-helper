@@ -1,5 +1,5 @@
 // variables
-const compressions = 5;
+const compressions = 30;
 const ventilations = 2;
 
 // build sleep function - https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
