@@ -1,0 +1,27 @@
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+input[type="button"] {
+  position: middle;
+  margin: 0 auto;
+  width: 100%;
+  border: none;
+  padding: 20px 0;
+  color: black;
+  font-size: 40pt;
+  text-transform: uppercase;
+  font-weight: bolder;
+  background-color: pink;
+  top: 0;
+}
+
+#cpr {
+  margin-top: 40vh;
+  font-size: 40pt;
+  text-align: center;
+  text-transform: uppercase;
+  position: middle;
+}
