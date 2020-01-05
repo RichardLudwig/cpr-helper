@@ -1,5 +1,5 @@
 // variables
-const compressions = 5;
+const compressions = 30;
 const ventilations = 2;
 const beep = new Audio('./beep.mp3');
 
