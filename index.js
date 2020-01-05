@@ -1,7 +1,8 @@
 // variables
-const compressions = 30;
-const ventilations = 2;
-const beep = new Audio('./beep.mp3');
+const COMPRESSIONS = 5;
+const VENTILATIONS = 2;
+const COMPRESSION_SOUND = new Audio('./beep.mp3');
+const VENTILATION_SOUND = new Audio('./wind.mp3');
 
 // build sleep function - https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
 function sleep(ms) {
@@ -9,49 +10,61 @@ function sleep(ms) {
 }
 
 // 100bpm audio metronome helper function
-function sound() {
-  beep.play();
+function compressionSound() {
+  COMPRESSION_SOUND.play();
 }
 
-// pause helper function
-function pause() {
-  beep.pause();
+// ventilation sound helper function
+function ventilationSound() {
+  VENTILATION_SOUND.play();
+}
+
+// pause helper functions
+function pauseCompressions() {
+  COMPRESSION_SOUND.pause();
+}
+
+function pauseVentilations() {
+  VENTILATION_SOUND.pause();
 }
 
 // cpr function to run with intervals
 async function cpr() {
-  sound();
+  compressionSound();
   // disable button while function running
   // issue is that, if not disabled, will run multiple rounds simultaneously for every button click
   document.getElementById('cpr-button').disabled = true;
 
-  // cycles through compressions
-  for (let i = 1; i <= compressions; i++) {
+  // cycles through COMPRESSIONS
+  for (let i = 1; i <= COMPRESSIONS; i++) {
 
     // 600 MS IS 100BPM WHICH IS THE STANDARD TIMING FOR CPR
     await sleep(600);
     // when last compression is iterated
-    if (i == compressions) {
+    if (i == COMPRESSIONS) {
       // prints last compression in round
       document.getElementById('cpr').innerHTML = `Compression #${i}`;    
-      // switch to ventilations
-      for (let j = 1; j <= ventilations; j++) {
-        await sleep(600);
+      // switch to VENTILATIONS
+      // pause sound()
+      pauseCompressions();
+      for (let j = 1; j <= VENTILATIONS; j++) {
         // when last ventilation is iterated
-        if (j == ventilations) {
+        if (j == VENTILATIONS) {
           // prints last ventilation in round
+          await sleep(2000);
           document.getElementById('cpr').innerHTML = `Ventilation #${j}`;
-          // pause sound()
-          pause();
+          await sleep(2000);
           // sleep function so user can see last ventilation
-          await sleep(600);
           // function ending so remove button disability to allow new round
+          pauseVentilations();
           document.getElementById('cpr-button').disabled = false;
           // helpful message that round is done
           document.getElementById('cpr').innerHTML = 'Round Done';
           // ends function
           return;
         }
+        ventilationSound();
+        await sleep(600);
         // prints ventilation when iterated
         document.getElementById('cpr').innerHTML = `Ventilation #${j}`;
       }
