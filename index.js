@@ -1,5 +1,5 @@
 // variables
-const COMPRESSIONS = 5;
+const COMPRESSIONS = 30;
 const VENTILATIONS = 2;
 const COMPRESSION_SOUND = new Audio('./beep.mp3');
 const VENTILATION_SOUND = new Audio('./wind.mp3');
